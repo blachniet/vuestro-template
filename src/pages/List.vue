@@ -3,7 +3,7 @@
     <vuestro-card cols=3 color="var(--vuestro-orange)">
       <template #heading>
         <span>Sidebar List</span>
-        <vuestro-container no-grow gutter="none">
+        <vuestro-container grow="0" gutter="none">
 					<vuestro-button pill @click="$refs.exampleModal.openCreate()" variant="success" value>
 					  <template #icon>
   						<vuestro-icon name="plus"></vuestro-icon>
@@ -15,26 +15,31 @@
 					</vuestro-button>
 				</vuestro-container>
       </template>
-      <vuestro-list-item v-for="i in exampleData" :key="i.name" :selected="selectedItem == i" @click="onClick(i)">
-        <template #title>{{ i.name }}</template>
-        <template #description>{{ i.description }}</template>
-        <template #buttons>
-          <vuestro-button round no-border size="sm" @click="$refs.exampleModal.openEdit(i)">
-            <vuestro-icon name="pen"></vuestro-icon>
-          </vuestro-button>
-          <vuestro-tooltip rounded position="left" no-wrap>
-            <template #content>
-              Are you sure?
-              <vuestro-button stretch dark rounded value variant="danger" @click="deleteExampleItem(item)">
-                  Delete
-              </vuestro-button>
-            </template>
-            <vuestro-button round no-border size="sm" variant="danger">
-              <vuestro-icon name="trash"></vuestro-icon>
+      <template v-if="exampleData.length > 0">
+        <vuestro-list-item v-for="i in exampleData" :key="i.name" :selected="selectedItem == i" @click="onClick(i)">
+          <template #title>{{ i.name }}</template>
+          <template #description>{{ i.description }}</template>
+          <template #buttons>
+            <vuestro-button round no-border size="sm" @click="$refs.exampleModal.openEdit(i)">
+              <vuestro-icon name="pen"></vuestro-icon>
             </vuestro-button>
-          </vuestro-tooltip>
-        </template>
-      </vuestro-list-item>
+            <vuestro-tooltip rounded position="left" no-wrap>
+              <template #content>
+                Are you sure?
+                <vuestro-button stretch dark rounded value variant="danger" @click="deleteExampleItem(item)">
+                    Delete
+                </vuestro-button>
+              </template>
+              <vuestro-button round no-border size="sm" variant="danger">
+                <vuestro-icon name="trash"></vuestro-icon>
+              </vuestro-button>
+            </vuestro-tooltip>
+          </template>
+        </vuestro-list-item>
+      </template>
+      <vuestro-no-data v-else>
+        No items
+      </vuestro-no-data>
     </vuestro-card>
     <vuestro-card cols=9>
       <vuestro-panel>

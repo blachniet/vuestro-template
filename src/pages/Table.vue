@@ -3,7 +3,7 @@
     <vuestro-card color="var(--vuestro-danger)">
       <template #heading>
         <span>Table Example</span>
-        <vuestro-container gutter="none" no-grow>
+        <vuestro-container gutter="none" grow="0">
           <vuestro-button pill
                           variant="success"
                           value

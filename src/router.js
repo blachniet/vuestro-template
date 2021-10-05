@@ -2,7 +2,7 @@
 import Router from 'vue-router';
 
 import Dashboard from './pages/Dashboard.vue';
-import Sidebar from './pages/Sidebar.vue';
+import List from './pages/List.vue';
 import Links from './pages/Links.vue';
 import Table from './pages/Table.vue';
 import Settings from './pages/Settings.vue';
@@ -24,13 +24,13 @@ export default new Router({
     },
     {
       meta: {
-        title: 'Sidebar',
+        title: 'List',
         sidebar: true,
-        icon: 'cubes',
+        icon: 'list',
       },
-      name: 'sidebar',
-      path: '/sidebar',
-      component: Sidebar,
+      name: 'list',
+      path: '/list',
+      component: List,
     },
     {
       meta: {
