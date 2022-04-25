@@ -11,7 +11,7 @@
     "axios": "0.26.0",
     "vue": "2.6.14",
     "vue-router": "3.5.3",
-    "vuestro": "8.55.5",
+    "vuestro": "8.59.1",
     "vuex": "3.6.2"
   },
   "devDependencies": {
