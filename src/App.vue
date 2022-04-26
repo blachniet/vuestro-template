@@ -23,7 +23,7 @@
 /* global VERSION */
 
 export default {
-  name: 'app',
+  name: 'App',
   data() {
     return {
       dark: true,
@@ -33,8 +33,9 @@ export default {
       role: 'Admin',
     };
   },
-  mounted() {
-    this.$store.dispatch('loadExampleData');
+  beforeMount() {
+    // pre-load any Vuex data here
+    this.$store.dispatch('example/loadExampleData');
   },
 };
 </script>

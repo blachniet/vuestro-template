@@ -3,9 +3,9 @@
 const SETTINGS_URL = `/api/v1/settings`;
 
 export default {
+  namespaced: true,
   state: {
     loaded: false, // flag indicating a successful initial load from server
-    dirty: true,   // flag to track the state of the settings
     settings: {    // settings object containing defaults
       miniSidebar: false,
       isDarkUI: true,
@@ -70,23 +70,22 @@ export default {
       state.loaded = true;
       console.info('settings loaded');
       // initiate a save to commit new defaults
-      this.dispatch('saveSettings');
+      this.dispatch('settings/saveSettings');
     },
     settingsSaved(state) {
-      console.info("settings saved"); // print this out to help debug over-saving
-      state.dirty = false;
+      console.info("settings saved"); // print this out to make over-saving obvious
     },
     setSidebarMini(state, val) {
       state.settings.miniSidebar = val;
-      this.dispatch('saveSettings');
+      this.dispatch('settings/saveSettings');
     },
     toggleIsDarkUI(state) {
       state.settings.isDarkUI = !state.settings.isDarkUI;
-      this.dispatch('saveSettings');
+      this.dispatch('settings/saveSettings');
     },
     setShowWelcome(state, val) {
       state.settings.showWelcome = val;
-      this.dispatch('saveSettings');
+      this.dispatch('settings/saveSettings');
     },
   },
 };

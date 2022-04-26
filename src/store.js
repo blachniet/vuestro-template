@@ -1,7 +1,7 @@
 /* global Vue, Vuex */
-import settings from './settings';
-import auth from './auth';
-import example from './example';
+import settings from '@/components/settings/store';
+import auth from '@/components/auth/store';
+import example from '@/components/example/store';
 
 Vue.use(Vuex);
 

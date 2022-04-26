@@ -45,7 +45,7 @@
 
 <script>
 
-/* global _ */
+/* global _, Vuex */
 
 export default {
   name: 'ExampleModal',
@@ -53,7 +53,7 @@ export default {
     return {
       open: false,
       mode: null,
-      liveItem: null,
+      liveItem: {},
       // the default item
       defaultItem: {
         name: '',
@@ -74,6 +74,7 @@ export default {
     },
   },
   methods: {
+    ...Vuex.mapActions('example', ['addExampleItem', 'updateExampleItem']),
     isNumber(d) {
       return _.isFinite(_.toNumber(d)) || 'should be number';
     },
@@ -96,14 +97,12 @@ export default {
       this.mode = 'Edit';
     },
     onSave() {
-      this.$nextTick(() => {
-        if (this.mode === 'Create') {
-          this.$store.dispatch('addExampleItem', _.cloneDeep(this.liveItem));
-        } else {
-          this.$store.dispatch('updateExampleItem', _.cloneDeep(this.liveItem));
-        }
-        this.open = false;
-      });
+      if (this.mode === 'Create') {
+        this.addExampleItem(_.cloneDeep(this.liveItem));
+      } else {
+        this.updateExampleItem(_.cloneDeep(this.liveItem));
+      }
+      this.open = false;
     },
   }
 };

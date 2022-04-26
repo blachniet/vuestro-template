@@ -3,11 +3,9 @@
 import Vuestro from 'vuestro';
 Vue.use(Vuestro);
 
-import App from './App.vue';
-import store from './store';
-import router from './router';
-
-
+import App from '@/App';
+import store from '@/store';
+import router from '@/router';
 
 // disable production tip
 Vue.config.productionTip = false;

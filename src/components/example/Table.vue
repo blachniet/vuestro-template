@@ -38,17 +38,7 @@
             <vuestro-button round no-border @click="$refs.exampleModal.openEdit(item)">
               <vuestro-icon name="edit"></vuestro-icon>
             </vuestro-button>
-            <vuestro-tooltip rounded position="left" no-wrap>
-              <template #content>
-                Are you sure?
-                <vuestro-button stretch dark rounded value variant="danger" @click="deleteExampleItem(item)">
-                    Delete
-                </vuestro-button>
-              </template>
-              <vuestro-button round no-border>
-                <vuestro-icon name="trash"></vuestro-icon>
-              </vuestro-button>
-            </vuestro-tooltip>
+            <vuestro-confirm size="sm" @confirm="deleteExampleItem(item)"></vuestro-confirm>
           </template>
           <template #no-data>
             No Example Data Items
@@ -64,8 +54,8 @@
 
 /* global Vuex */
 
-import ExampleModal from '@/components/ExampleModal';
-import CheckOrX from '@/components/CheckOrX';
+import ExampleModal from '@/components/example/ExampleModal';
+import CheckOrX from '@/components/example/CheckOrX';
 
 export default {
   name: 'Table',
@@ -81,6 +71,7 @@ export default {
           {
             title: 'Name',
             field: 'name',
+            sortable: true,
           },
           {
             title: 'Description',
@@ -89,6 +80,7 @@ export default {
           {
             title: 'Age',
             field: 'age',
+            sortable: true,
           },
           {
             title: 'Subscribed',
@@ -100,10 +92,10 @@ export default {
     };
   },
   computed: {
-    ...Vuex.mapGetters(['exampleData', 'isExampleDataLoaded']),
+    ...Vuex.mapGetters('example', ['exampleData', 'isExampleDataLoaded']),
   },
   methods: {
-    ...Vuex.mapActions(['loadExampleData', 'deleteExampleItem']),
+    ...Vuex.mapActions('example', ['loadExampleData', 'deleteExampleItem']),
   },
 };
 
