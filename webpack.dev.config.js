@@ -15,7 +15,7 @@ module.exports = merge(devWebpackConfig, {
       // This is where globals are defined for the DEV client-side
       // Production will use a static method of defining these values through start-nginx.sh and config.js
       //
-      BACKEND_URL: JSON.stringify(process.env.BACKEND_URL || 'http://localhost:8081'),
+      BACKEND_URL: JSON.stringify(process.env.BACKEND_URL || 'http://localhost:3000'),
       CI_BUILD_DATE: JSON.stringify(new Date()),
       CI_VERSION: JSON.stringify(`dev@${gitHash}`),
     }),

@@ -1,6 +1,6 @@
-/* global _, axios */
+/* global _, axios, BACKEND_URL */
 
-const SETTINGS_URL = `/api/v1/settings`;
+const SETTINGS_URL = `${BACKEND_URL}/api/v1/settings/dashboard-settings`;
 
 export default {
   namespaced: true,
@@ -30,37 +30,28 @@ export default {
     },
   },
   actions: {
-    loadSettings({ commit }) {
-      // return axios.get(SETTINGS_URL).then((res) => {
-      //   commit('settingsLoaded', res.data);
-      // }).catch((err) => {
-      //   this.dispatch('checkAuthForHTTPError', err);
-      // });
+    load({ commit }) {
+      return axios.get(SETTINGS_URL).then((res) => {
+        commit('settingsLoaded', res.data);
+      });
     },
     saveSettings({ commit, state }) {
-      // if (state.loaded) { // don't do it before initial load
-      //   return axios.post(SETTINGS_URL, state.settings).then((res) => {
-      //     commit('settingsSaved');
-      //   }).catch((err) => {
-      //     this.dispatch('checkAuthForHTTPError', err);
-      //   });
-      // }
+      if (state.loaded) { // don't do it before initial load
+        return axios.post(SETTINGS_URL, state.settings).then((res) => {
+          commit('settingsSaved');
+        });
+      }
     },
     resetSettings({ commit }) {
-      // return axios.post(SETTINGS_URL, {}).then((res) => {
-      //   this.dispatch('loadSettings');
-      // }).catch((err) => {
-      //   this.dispatch('checkAuthForHTTPError', err);
-      // });
+      return axios.post(SETTINGS_URL, {}).then((res) => {
+        this.dispatch('settings/loadSettings');
+      });
     },
     setSidebarMini({ commit }, val) {
       commit('setSidebarMini', val);
     },
     toggleIsDarkUI({ commit }) {
       commit('toggleIsDarkUI');
-    },
-    setShowWelcome({ commit }, val) {
-      commit('setShowWelcome', val);
     },
   },
   mutations: {

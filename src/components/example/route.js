@@ -1,5 +1,6 @@
 import List from '@/components/example/List';
 import Table from '@/components/example/Table';
+import Dropdown from '@/components/example/Dropdown';
 
 export default {
   meta: {
@@ -32,6 +33,16 @@ export default {
       name: 'table',
       path: 'table',
       component: Table,
+    },
+    {
+      meta: {
+        title: 'Dropdown',
+        sidebar: true,
+        icon: 'menu',
+      },
+      name: 'dropdown',
+      path: 'dropdown',
+      component: Dropdown,
     },
   ],
 };
