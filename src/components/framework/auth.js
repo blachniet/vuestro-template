@@ -112,8 +112,6 @@ export default {
         // else see if token parses
         if (res.data.token && isTokenValid(res.data.token)) {
           commit('loginSuccess', res.data);
-          // load profile
-          this.dispatch('auth/loadProfile');
         }
       }).catch((err) => {
         if (err.message === 'Network Error') {

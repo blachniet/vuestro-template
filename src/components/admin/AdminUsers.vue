@@ -74,7 +74,7 @@
 
 <script>
 
-/* global Vuex, Vue */
+/* global Vuex */
 import UserModal from '@/components/admin/UserModal';
 
 export default {

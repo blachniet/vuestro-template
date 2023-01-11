@@ -46,7 +46,7 @@ export default {
       return axios.put(URL, {
         avatar: imgUrl,
       }).then((res) => {
-        this.dispatch('loadProfile');
+        this.dispatch('profile/load');
       });
     },
     loadProfileByUserId({ commit, state }, user_id) {
